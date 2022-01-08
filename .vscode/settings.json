@@ -1,0 +1,10 @@
+{
+    "editor.fontFamily": "D2Coding, Monaco, 'Courier New', monospace",
+    "editor.fontSize": 14,
+    "editor.tabSize": 2,
+    "files.autoSave": "onFocusChange",
+    "prettier.configPath": ".prettierrc.json",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "eslint.run": "onSave"
+}

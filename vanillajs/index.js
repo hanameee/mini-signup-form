@@ -6,7 +6,7 @@ window.addEventListener('load', $idInput.focus())
 
 // 2. 이메일 validation 로직 구현
 
-// 유효하지 않을 경우, 이메일 input의 style이 달라져야 하고, 에러 메세지가 나타나야 함
+// 유효하지 않을 경우, 에러 메세지가 나타나야 함
 // 2-1. 비어있을 경우: "필수 정보입니다"
 // 2-2. 패턴에 맞지 않을 경우: "5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다."
 
@@ -43,9 +43,9 @@ $idInput.addEventListener('focusout', (e) => checkIdValidation(e.target.value))
 
 // 3. 비밀번호 validation 로직 구현
 
-// 유효하지 않을 경우, 이메일 input의 style이 달라져야 하고, 에러 메세지가 나타나야 함
+// 유효하지 않을 경우, 아래 에러 메세지가 나타나야 함
 // 3-1. 비어있을 경우: "필수 정보입니다"
-// 3-2. 패턴에 맞지 않을 경우: "5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다."
+// 3-2. 패턴에 맞지 않을 경우: "8~16자 영문 대 소문자, 숫자만 사용 가능합니다."
 
 const $pwInput = document.getElementById('pwInput')
 const $pwMsg = document.getElementById('pwMsg')
@@ -77,11 +77,14 @@ $pwInput.addEventListener('focusout', (e) => {
 const PW_REGEX = new RegExp('^[a-zA-Z0-9W]{8,16}$')
 
 const PW_INPUT_MESSAGE = {
-    invalid: '8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.',
+    invalid: '8~16자 영문 대 소문자, 숫자만 사용 가능합니다.',
     required: '필수 정보입니다.',
 }
 
 // 4. 비밀번호 확인
+
+// 4-1. 비어있을 경우: "필수 정보입니다"
+// 4-2. 비밀번호와 일치하지 않을 경우: "비밀번호가 일치하지 않습니다."
 
 const $pwCheckInput = document.getElementById('pwCheckInput')
 const $pwCheckMsg = document.getElementById('pwCheckMsg')

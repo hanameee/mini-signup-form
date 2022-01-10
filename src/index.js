@@ -118,13 +118,13 @@ const $form = document.getElementById('form');
 $form.addEventListener('submit', (e) => onSubmit(e));
 
 // 6. 입력 확인 모달
-const $submitModal = document.getElementById('submit-modal');
-const $modalBackdrop = document.getElementById('modal-backdrop');
 const $confirmId = document.getElementById('confirm-id');
 const $confirmPw = document.getElementById('confirm-pw');
 
 const $cancelBtn = document.getElementById('cancel-btn');
 const $approveBtn = document.getElementById('approve-btn');
+
+const $modal = document.getElementById('modal');
 
 const onSubmit = (e) => {
     e.preventDefault();
@@ -133,19 +133,20 @@ const onSubmit = (e) => {
         checkPwValidation($pw.value) === true &&
         checkPwCheckValidation($pwCheck.value) === true;
     if (isValidForm) {
-        $submitModal.hidden = false;
-        $modalBackdrop.hidden = false;
+        $modal.showModal();
         $confirmId.innerText = $id.value;
         $confirmPw.innerText = $pw.value;
     }
 };
 
 $cancelBtn.addEventListener('click', () => {
-    $submitModal.hidden = true;
-    $modalBackdrop.hidden = true;
+    $modal.close();
 });
 
-$approveBtn.addEventListener('click', () => window.alert('가입되었습니다 🥳'));
+$approveBtn.addEventListener('click', () => {
+    window.alert('가입되었습니다 🥳');
+    $modal.close();
+});
 
 // 7. 폰트 사이즈 조절 기능
 const $html = document.documentElement;

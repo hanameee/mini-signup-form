@@ -81,7 +81,8 @@
                 ©2022 Hanameee Corp. All rights reserved
             </footer>
         </section>
-        <div id="font-control-box" class="flex fixed bottom-0 right-0">
+        <aside id="font-control-box" class="flex fixed bottom-0 right-0">
+            <!-- TIP: button 비활성화는 HTML button 태그의 disable 속성을 활용해주세요. -->
             <button
                 id="increase-font-btn"
                 class="bg-white text-gray-500 border border-gray-300 hover:bg-red-50 focus:outline-none focus:shadow-outline disabled:bg-gray-500 disabled:text-white rounded-full"
@@ -94,11 +95,10 @@
             >
                 -
             </button>
-        </div>
-        <div id="submit-modal" class="fixed z-10" hidden>
-            <div
-                class="inline-block bg-white rounded-lg text-left overflow-hidden shadow-xl transition-all w-full"
-            >
+        </aside>
+        <!-- TIP: Dialog(Modal)의 가시성은 HTML modal 태그의 native 속성과 메소드로 제어해주세요. -->
+        <dialog id="modal" class="rounded-lg shadow-xl text-left">
+            <div class="w-full rounded-lg">
                 <div class="p-6 mt-3">
                     <h3 class="text-lg leading-6 font-medium text-gray-900">
                         입력하신 내용을 확인해주세요.
@@ -120,7 +120,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="bg-gray-50 px-4 py-3 flex justify-center">
+                <div
+                    class="bg-gray-50 px-4 py-3 flex justify-center rounded-lg"
+                >
                     <button
                         id="cancel-btn"
                         type="button"
@@ -137,12 +139,7 @@
                     </button>
                 </div>
             </div>
-        </div>
-        <div
-            id="modal-backdrop"
-            class="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
-            hidden
-        />
+        </dialog>
         <script type="text/javascript" src="index.js"></script>
     </body>
 </html>

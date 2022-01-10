@@ -891,19 +891,16 @@ body {
     transform: translateY(-50%);
 }
 
-#submit-modal {
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
+dialog {
+    top: 50%;
+    transform: translateY(-100%);
     width: 512px;
+    z-index: 99;
+    padding: 0;
 }
 
-.show {
-    display: block;
-}
-
-.hidden {
-    display: none;
+dialog::backdrop {
+    background: rgba(107, 114, 128, 0.75);
 }
 
 #font-control-box {

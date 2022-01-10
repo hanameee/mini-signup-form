@@ -885,13 +885,13 @@ body {
     background-color: aliceblue;
 }
 
-.wrapper {
+.form-wrapper {
     position: relative;
     top: 50%;
     transform: translateY(-50%);
 }
 
-#submitModal {
+#submit-modal {
     position: relative;
     left: 50%;
     transform: translateX(-50%);
@@ -906,12 +906,12 @@ body {
     display: none;
 }
 
-#fontControlBox {
+#font-control-box {
     font-size: 20px;
     margin: 16px;
 }
 
-#fontControlBox > button {
+#font-control-box > button {
     padding: 8px;
     width: 48px;
     height: 48px;

@@ -1,13 +1,13 @@
 // 1. 진입 시 input focus 구현
-const $idInput = document.getElementById('idInput');
-window.addEventListener('load', $idInput.focus());
+const $id = document.getElementById('id');
+window.addEventListener('load', $id.focus());
 
 // 2. 이메일 validation 로직 구현
 
 // 유효하지 않을 경우, 에러 메세지가 나타나야 함
 // 2-1. 비어있을 경우: "필수 정보입니다"
 // 2-2. 패턴에 맞지 않을 경우: "5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다."
-const $idMsg = document.getElementById('idMsg');
+const $idMsg = document.getElementById('id-msg');
 
 const ID_INPUT_MESSAGE = {
     invalid: '5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.',
@@ -28,23 +28,23 @@ const checkIdValidation = (value) => {
     const validationResult = isValidId(value);
     if (validationResult === true) {
         $idMsg.innerText = '';
-        $idInput.classList.remove('border-red-600');
+        $id.classList.remove('border-red-600');
     } else {
         $idMsg.innerText = ID_INPUT_MESSAGE[validationResult];
-        $idInput.classList.add('border-red-600');
+        $id.classList.add('border-red-600');
     }
     return validationResult;
 };
 
-$idInput.addEventListener('focusout', (e) => checkIdValidation(e.target.value));
+$id.addEventListener('focusout', (e) => checkIdValidation(e.target.value));
 
 // 3. 비밀번호 validation 로직 구현
 
 // 유효하지 않을 경우, 아래 에러 메세지가 나타나야 함
 // 3-1. 비어있을 경우: "필수 정보입니다"
 // 3-2. 패턴에 맞지 않을 경우: "8~16자 영문 대 소문자, 숫자만 사용 가능합니다."
-const $pwInput = document.getElementById('pwInput');
-const $pwMsg = document.getElementById('pwMsg');
+const $pw = document.getElementById('pw');
+const $pwMsg = document.getElementById('pw-msg');
 
 const isValidPw = (value) => {
     if (value.length === 0) {
@@ -58,15 +58,15 @@ const checkPwValidation = (value) => {
     const validationResult = isValidPw(value);
     if (validationResult === true) {
         $pwMsg.innerText = '';
-        $pwInput.classList.remove('border-red-600');
+        $pw.classList.remove('border-red-600');
     } else {
         $pwMsg.innerText = PW_INPUT_MESSAGE[validationResult];
-        $pwInput.classList.add('border-red-600');
+        $pw.classList.add('border-red-600');
     }
     return validationResult;
 };
 
-$pwInput.addEventListener('focusout', (e) => {
+$pw.addEventListener('focusout', (e) => {
     checkPwValidation(e.target.value);
 });
 
@@ -81,8 +81,8 @@ const PW_INPUT_MESSAGE = {
 
 // 4-1. 비어있을 경우: "필수 정보입니다"
 // 4-2. 비밀번호와 일치하지 않을 경우: "비밀번호가 일치하지 않습니다."
-const $pwCheckInput = document.getElementById('pwCheckInput');
-const $pwCheckMsg = document.getElementById('pwCheckMsg');
+const $pwCheck = document.getElementById('pw-check');
+const $pwCheckMsg = document.getElementById('pw-check-msg');
 
 const PW_CHECK_INPUT_MESSAGE = {
     invalid: '비밀번호가 일치하지 않습니다.',
@@ -93,7 +93,7 @@ const isValidPwCheck = (value) => {
     if (value.length === 0) {
         return 'required';
     } else {
-        return value === $pwInput.value ? true : 'invalid';
+        return value === $pw.value ? true : 'invalid';
     }
 };
 
@@ -101,15 +101,15 @@ const checkPwCheckValidation = (value) => {
     const validationResult = isValidPwCheck(value);
     if (validationResult === true) {
         $pwCheckMsg.innerText = '';
-        $pwCheckInput.classList.remove('border-red-600');
+        $pwCheck.classList.remove('border-red-600');
     } else {
         $pwCheckMsg.innerText = PW_CHECK_INPUT_MESSAGE[validationResult];
-        $pwCheckInput.classList.add('border-red-600');
+        $pwCheck.classList.add('border-red-600');
     }
     return validationResult;
 };
 
-$pwCheckInput.addEventListener('focusout', (e) => {
+$pwCheck.addEventListener('focusout', (e) => {
     checkPwCheckValidation(e.target.value);
 });
 
@@ -118,46 +118,44 @@ const $form = document.getElementById('form');
 $form.addEventListener('submit', (e) => onSubmit(e));
 
 // 6. 입력 확인 모달
-const $submitModal = document.getElementById('submitModal');
-const $modalBackdrop = document.getElementById('modalBackdrop');
-const $confirmId = document.getElementById('confirmId');
-const $confirmPw = document.getElementById('confirmPw');
+const $submitModal = document.getElementById('submit-modal');
+const $modalBackdrop = document.getElementById('modal-backdrop');
+const $confirmId = document.getElementById('confirm-id');
+const $confirmPw = document.getElementById('confirm-pw');
 
-const $cancleSubmitModal = document.getElementById('cancleSubmitModal');
-const $approveSubmitModal = document.getElementById('approveSubmitModal');
+const $cancelBtn = document.getElementById('cancel-btn');
+const $approveBtn = document.getElementById('approve-btn');
 
 const onSubmit = (e) => {
     e.preventDefault();
     const isValidForm =
-        checkIdValidation($idInput.value) === true &&
-        checkPwValidation($pwInput.value) === true &&
-        checkPwCheckValidation($pwCheckInput.value) === true;
+        checkIdValidation($id.value) === true &&
+        checkPwValidation($pw.value) === true &&
+        checkPwCheckValidation($pwCheck.value) === true;
     if (isValidForm) {
         $submitModal.hidden = false;
         $modalBackdrop.hidden = false;
-        $confirmId.innerText = $idInput.value;
-        $confirmPw.innerText = $pwInput.value;
+        $confirmId.innerText = $id.value;
+        $confirmPw.innerText = $pw.value;
     }
 };
 
-$cancleSubmitModal.addEventListener('click', () => {
+$cancelBtn.addEventListener('click', () => {
     $submitModal.hidden = true;
     $modalBackdrop.hidden = true;
 });
 
-$approveSubmitModal.addEventListener('click', () =>
-    window.alert('가입되었습니다 🥳')
-);
+$approveBtn.addEventListener('click', () => window.alert('가입되었습니다 🥳'));
 
 // 7. 폰트 사이즈 조절 기능
 const $html = document.documentElement;
 
-const $increaseFontBtn = document.getElementById('increaseFontBtn');
+const $increaseFontBtn = document.getElementById('increase-font-btn');
 $increaseFontBtn.addEventListener('click', () =>
     onClickFontSizeControl('increase')
 );
 
-const $decreaseFontBtn = document.getElementById('decreaseFontBtn');
+const $decreaseFontBtn = document.getElementById('decrease-font-btn');
 $decreaseFontBtn.addEventListener('click', () =>
     onClickFontSizeControl('decrease')
 );

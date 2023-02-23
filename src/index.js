@@ -117,25 +117,18 @@ $approveBtn.addEventListener('click', () => alert('가입되었습니다 🥳'))
 
 
 // 5.폰트사이즈 조절
-let fontSize = 16
 
-const increaseFontSize = () => {
-  if (fontSize > 19) {
-    return;
-  } else {
-    fontSize = fontSize + 1
-    document.body.style.fontSize = `${fontSize + 1}px`
-  }
+const $html = document.documentElement
+const maxFontSize = 20
+const minFontSize = 12
+
+const changeFontSize = (status) => {
+  let currentFontSize = window.getComputedStyle($html).fontSize
+  const nextFontSize = status === 'increase' ? parseInt(currentFontSize) + 1 : parseInt(currentFontSize) - 1
+  $html.style.fontSize = `${nextFontSize}px`
+  $increaseFont.disabled = nextFontSize >= maxFontSize
+  $decreaseFont.disabled = nextFontSize <= minFontSize
 }
 
-const decreaseFontSize = () => {
-  if (fontSize < 13) {
-    return;
-  } else {
-    fontSize = fontSize - 1
-    document.body.style.fontSize = `${fontSize - 1}px`
-  }
-}
-
-$increaseFont.addEventListener('click', increaseFontSize)
-$decreaseFont.addEventListener('click', decreaseFontSize)
+$increaseFont.addEventListener('click', () => changeFontSize('increase'))
+$decreaseFont.addEventListener('click', () => changeFontSize('decrease'))
